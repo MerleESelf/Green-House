@@ -9,6 +9,18 @@ const Plant = db.define('plant', {
     species: {
         type: Sequelize.STRING
     }, 
+    commonName:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    origin:{
+        type: Sequelize.STRING, 
+        defaultValue: 'EDIT ME'
+    },
+    isVariegated: {
+        type: Sequelize.BOOLEAN, 
+        defaultValue: false
+    },
     potSize: {
         type: Sequelize.INTEGER
     }, 
@@ -22,4 +34,4 @@ const Plant = db.define('plant', {
     }
 }); 
 
-module.exports(Plant)
+module.exports = Plant

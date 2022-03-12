@@ -9,13 +9,13 @@ const Window = require('./models/Window')
 
 //associations
 User.hasMany(Plant);
-Plant.belongsTo(User); 
 User.hasMany(Room); 
+Plant.belongsTo(User); 
 Room.belongsTo(User); 
 
 Room.hasMany(Plant); 
+Room.hasMany(Window);
 Plant.belongsTo(Room); 
-Room.hasMany(Window); 
 Window.belongsTo(Room); 
 
 module.exports = {

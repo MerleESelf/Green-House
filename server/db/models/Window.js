@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Window = db.define('room', {
+const Window = db.define('window', {
     exposure: {
         type: Sequelize.STRING,
         allowNull: false
@@ -9,4 +9,4 @@ const Window = db.define('room', {
 })
    
 
-module.exports(Window)
+module.exports = Window

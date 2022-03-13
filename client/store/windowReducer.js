@@ -1,103 +1,74 @@
-import axios from "axios";
+import axios from 'axios';
 
-/**
- * ACTION TYPES
- */
-const GET_ALL_WINDOWS = "GET_ALL_WINDOWS";
-const SET_WINDOWS = "SET_WINDOWS";
-const REMOVE_WINDOWS = "REMOVE_WINDOWS";
-const ADMIN_UPDATE_WINDOWS = "ADMIN_UPDATE_WINDOWS";
+//action constant for all windows
+const GET_ALL_WINDOWS = 'GET_ALL_WINDOWS';
 
-/**
- * ACTION CREATORS
- */
-const setWindows = (windows) => ({ type: GET_ALL_WINDOWS, windows });
+// action constant for add new window
+const ADD_NEW_WINDOW = 'ADD_NEW_WINDOW';
 
+//action constant for delete window
+const DELETE_WINDOW = 'DELETE_WINDOW';
 
-const createAWindow = (window) => ({
-  type: SET_WINDOWS,
-  window
-})
+//action creator for all windows
+const getAllWindows = (windows) => {
+  return {
+    type: GET_ALL_WINDOWS,
+    windows,
+  };
+};
 
-const removeAWindow = (window) => ({
-  type: REMOVE_WINDOWS,
-  window
-})
+//action creator for add new window
+const addNewWindow = (window) => {
+  return {
+    type: ADD_NEW_WINDOW,
+    window,
+  };
+};
 
-const adminUpdateAWindow = (window) => ({
-  type: ADMIN_UPDATE_WINDOWS,
-  window,
-});
-/**
- * THUNK CREATORS
- */
-export const getAllwindows = () => {
+//action creator for delete window
+const deleteWindow = (window) => {
+  return {
+    type: DELETE_WINDOW,
+    window,
+  };
+};
+
+// thunk for all windows
+export const fetchWindows = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/windows");
+    const { data } = await axios.get('/api/windows');
     const windows = data;
-    dispatch(setWindows(windows));
+    dispatch(getAllWindows(windows));
   };
 };
 
-export const createWindowThunk = (token, window, history) => {
+//thunk for new window
+export const setWindows = (window) => {
   return async (dispatch) => {
-    try{
-      const { data } = await axios.post('/api/admin/windows',{ params: {
-        boo: token,
-        data: window
-      }});
-      dispatch(createAWindow(data))
-      history.push("/admin/windows")
-    } catch (err) {
-      console.log(err);
-    }
-  }
-}
-
-export const removeWindowThunk = (id, token, history) => {
-  return async (dispatch) => {
-    try{
-      const { data } = await axios.delete(`/api/admin/windows/${id}`,{ params: {
-        boo: token
-      }})
-      dispatch(removeAWindow(data))
-      history.push("/admin/windows")
-    } catch (err) {
-      console.log(err);
-    }
-  }
-}
-
-export const adminUpdateSingleWindow = (id, window, token, history) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.put(`/api/admin/windows/${id}`,{ params: {
-        boo: token,
-        data: window
-      }});
-      dispatch(adminUpdateAWindow(data));
-      history.push("/admin/windows")
-    } catch (err) {
-      console.log(err);
-    }
+    const { data: created } = await axios.post('/api/windows', window);
+    dispatch(addNewWindow(created));
   };
 };
 
-/**
- * REDUCER
- */
-export default function (state = [], action) {
+//thunk for delete window
+export const removeWindow = (id) => {
+  return async (dispatch) => {
+    const {data: window} = await axios.delete(`/api/windows/${id}`);
+    dispatch(deleteWindow(window));
+  };
+};
+
+
+// Take a look at app/redux/index.js to see where this reducer is
+// added to the Redux store with combineReducers
+export default function windowsReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_WINDOWS:
       return action.windows;
-    case REMOVE_WINDOWS:
-      return state.filter((window) => window.id !== action.window.id)
-    case SET_WINDOWS:
-      return [...state, action.window]
-    case ADMIN_UPDATE_WINDOWS:
-      return state.map((window) =>
-      window.id === action.window.id ? action.window : window
-    );
+    case ADD_NEW_WINDOW:
+      return [...state, action.window];
+    case DELETE_WINDOW:
+        return state.filter((window) => window.id !== action.window.id);
     default:
       return state;
   }

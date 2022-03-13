@@ -26,7 +26,7 @@ const addNewRoom = (room) => {
 };
 
 //action creator for delete room
-const deleteroom = (room) => {
+const deleteRoom = (room) => {
   return {
     type: DELETE_ROOM,
     room,

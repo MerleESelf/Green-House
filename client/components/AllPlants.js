@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchPlants } from "../store/plants.js";
 import Plant from "./Plant";
+import NewPlant from "./NewPlant.js";
 
 
 export class AllPlants extends React.Component {
@@ -18,10 +19,12 @@ export class AllPlants extends React.Component {
           {this.props.plants.map((plant) => (
             <div className="plant-container" key={plant.id}>
               <Plant plant={plant} />
-    
             </div>
           ))}
         </ul>
+         <div>
+           <NewPlant /> 
+         </div>
       </div>
     );
   }

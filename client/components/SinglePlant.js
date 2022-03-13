@@ -21,7 +21,6 @@ class SinglePlant extends React.Component {
   }
 
   render() {
-    console.log("********* props in single plant", this.props.plant);
     if (!this.props.plant.id) return <div>plant loading</div>;
     return (
       <div id="single-plant-div">

@@ -3,7 +3,6 @@ import React from "react";
 export class PlantForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props in constructor", props);
     this.state = {
       genus: props.singlePlant ? props.singlePlant.genus : "",
       species: props.singlePlant ? props.singlePlant.species : "",

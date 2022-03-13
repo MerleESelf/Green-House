@@ -4,11 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import plants from './plants'
-import rooms from './room'
-import windows from './window'
+import rooms from './rooms'
+import windows from './windows'
 import plant from './plant'
+import room from './room'
 
-const reducer = combineReducers({ auth, plants, rooms, windows, plant })
+const reducer = combineReducers({ auth, plants, rooms, windows, plant, room })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

@@ -7,11 +7,11 @@ import Plant from "./Plant";
 
 export class AllPlants extends React.Component {
   componentDidMount() {
-    this.props.getAllPlantsThunk();
+    this.props.getAllPlants();
   }
 
   render() {
-    console.log("*********", this.props.plants);
+    console.log("*********", this.props);
     return (
       <div>
         <h2 className="section-title">User Plants</h2>
@@ -29,6 +29,7 @@ export class AllPlants extends React.Component {
 }
 
 const mapState = (state) => {
+  console.log('map state', state)
   return {
     plants: state.plants,
   };
@@ -36,10 +37,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getAllPlantsThunk: () => {
+    getAllPlants: () => {
       dispatch(fetchPlants());
     }
   };
 };
+
 
 export default connect(mapState, mapDispatch)(AllPlants);

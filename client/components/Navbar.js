@@ -10,12 +10,13 @@ import {Navbar, Image} from 'react-bootstrap'
 
 const Nav = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Green House</h1>
-    <Navbar  bg="light" variant="light" expand="sm" >
+  
+    <Navbar  bg="dark" variant="light" expand="sm" >
       {isLoggedIn ? (
         <div>
-          <Image src="https://www.pngitem.com/pimgs/m/178-1787978_plant-black-and-white-simple-hd-png-download.png" style={{ height: `70px`, width: `70px` }}/>
+          <Image src="https://i.etsystatic.com/21577189/r/il/7b6df9/2419950432/il_570xN.2419950432_70d3.jpg" style={{ height: `90px`, width: `90px` }}/>
           {/* The navbar will show these links after you log in */}
+          <span>Green House</span>
           <Link to="/home">Home</Link>
           <Link to="/plants">Explore Plants</Link>
           <Link to="/rooms">Explore Rooms</Link>

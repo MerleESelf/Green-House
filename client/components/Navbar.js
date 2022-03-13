@@ -11,7 +11,7 @@ import {Navbar, Image} from 'react-bootstrap'
 const Nav = ({handleClick, isLoggedIn}) => (
   <div>
   
-    <Navbar  bg="dark" variant="light" expand="sm" >
+    <Navbar  bg="light" variant="light" expand="sm" >
       {isLoggedIn ? (
         <div>
           <Image src="https://i.etsystatic.com/21577189/r/il/7b6df9/2419950432/il_570xN.2419950432_70d3.jpg" style={{ height: `90px`, width: `90px` }}/>

@@ -38,7 +38,6 @@ export const fetchPlants = () => {
   return async (dispatch) => {
     const { data } = await axios.get('/api/plants');
     const plants = data;
-    console.log('plants in thunk', plants)
     dispatch(getAllPlants(plants));
   };
 };
@@ -65,7 +64,6 @@ export const removePlant = (id) => {
 export default function plantsReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_PLANTS:
-      console.log('in reducer', action.plants)
       return action.plants;
     case ADD_NEW_PLANT:
       return [...state, action.plant];

@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
 import AllPlants from "./components/AllPlants"
+import SinglePlant from './components/SinglePlant';
 
 /**
  * COMPONENT
@@ -23,9 +24,9 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/plants" component={AllPlants} />
-            {/* <Route exact path="/rooms" component={ConnectedAllRooms} />
-            <Route exact path="/plants/:id" component={ConnectedSinglePlant} />
-            <Route exact path="/rooms/:id" component={ConnectedSingleProject}/> */}
+            {/* <Route exact path="/rooms" component={AllRooms} /> */}
+            <Route exact path="/plants/:id" component={SinglePlant} />
+            {/* <Route exact path="/rooms/:id" component={SingleRoom}/> */}
             <Redirect to="/home" />
           </Switch>
         ) : (

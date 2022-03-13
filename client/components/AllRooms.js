@@ -11,7 +11,6 @@ export class AllRooms extends React.Component {
   }
 
   render() {
-    console.log("*********", this.props.rooms);
     return (
       <div>
         <h2 className="section-title">User rooms</h2>

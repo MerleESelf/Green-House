@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchPlants } from "../store/plantsReducer.js";
+import { fetchPlants } from "../store/plants.js";
 import Plant from "./Plant";
 
 
@@ -11,7 +11,6 @@ export class AllPlants extends React.Component {
   }
 
   render() {
-    console.log("*********", this.props);
     return (
       <div>
         <h2 className="section-title">User Plants</h2>
@@ -29,7 +28,6 @@ export class AllPlants extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log('map state', state)
   return {
     plants: state.plants,
   };

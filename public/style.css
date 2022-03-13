@@ -1,5 +1,7 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #dad7cd;
+  color: #344e41;
 }
 
 a {
@@ -13,6 +15,7 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  color:#588157;
 }
 
 form div {

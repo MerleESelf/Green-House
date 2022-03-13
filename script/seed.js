@@ -265,26 +265,31 @@ async function seed() {
 
   // rooms
   const bedroom = await Room.create({
+    name: "Bedroom",
     humidity: 40,
     temp: 65,
   });
 
   const bedroom2 = await Room.create({
+    name: "Extra Bedroom",
     humidity: 40,
     temp: 65,
   });
 
   const bathroom = await Room.create({
+    name: "Bathroom",
     humidity: 65,
     temp: 70,
   });
 
   const kitchen = await Room.create({
+    name: "Kitchen",
     humidity: 30,
     temp: 65,
   });
 
   const livingRoom = await Room.create({
+    name: "Living Room",
     humidity: 30,
     temp: 65,
   });

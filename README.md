@@ -3,15 +3,15 @@ Tier 1: All Plants
 Details
 Frontend
  [] Write a component to display a list of all plants (at least their names and imageUrls) []room  []window
- [] Write a plants sub-reducer to manage robots in your Redux store [] room []window
+ [x] Write a plants sub-reducer to manage robots in your Redux store [x] room [x]window
  [] Display the AllPlants component when the url matches /robots []room []window
  [] Add links to the navbar that can be used to navigate to the all-plants view []room []window
 
 Backend
-[] Write a route to serve up all plants []room  []window
+[x] Write a route to serve up all plants [x]room  [x]window
 
 Seed
-[] Running the seed file creates projects and robots for demonstration purposes
+[x] Running the seed file creates projects and robots for demonstration purposes
 Congrats! You have completed your first vertical slice! Make sure to commit -m "Feature: Get all robots and projects" before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
 
@@ -22,7 +22,7 @@ Frontend
 []Write a component to display a single plant with the following information  []room  []window
  The plants's name, image, ect []room  []window
  The names of their room(or a helpful message if they don't have any) []room  []window
- Display the appropriate plant when the url matches /plant/:plantId []room  []window
+ [x]Display the appropriate plant when the url matches /plant/:plantId [x]room  [x]window
 
 Clicking on a robot from the all-plants view should navigate to show that plant in the single-plant view
 

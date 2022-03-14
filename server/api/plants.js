@@ -46,12 +46,23 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// route to unassign project
+// route to unassign room
 router.put('/:id/unassign/:roomid', async (req, res, next) => {
   try {
     const roomWithPlantToUnassign = await Room.findByPk(req.params.roomid);
     await roomWithPlantToUnassign.removePlant(req.params.id);
     res.send(await Room.findByPk(req.params.roomid, { include: Plant }));
+  } catch (error) {
+    next(error);
+  }
+});
+
+//route to assign room
+router.put('/:id/assign/:roomid', async (req, res, next) => {
+  try {
+    const roomWithPlantToAssign = await Room.findByPk(req.params.roomid);
+    await roomWithPlantToAssign.addPlant(req.params.id);
+    res.send(await Plant.findByPk(req.params.id, { include: Room }));
   } catch (error) {
     next(error);
   }

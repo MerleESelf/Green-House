@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 import { fetchSinglePlant, removeAssociation } from "../store/plant.js";
 import EditPlant from "./EditPlant";
+import AssignRoom from "./AssignRoom.js";
 
 class SinglePlant extends React.Component {
   constructor(props) {
     super(props);
     this.handleUnassign = this.handleUnassign.bind(this);
-    this.renderRooms = this.renderRooms.bind(this)
+    this.renderRooms = this.renderRooms.bind(this);
   }
   componentDidMount() {
     this.props.getPlant(this.props.match.params.id);
@@ -20,16 +21,18 @@ class SinglePlant extends React.Component {
     const plantId = this.props.plant.id;
     this.props.removeAssociation(plantId, roomId);
   }
-  renderRooms(){
-    if (this.props.plant.room === null) {
-      return <p> Room not yet assigned </p>;
+  renderRooms() {
+    if (!this.props.plant.room) {
+      return (
+        <div>
+          <p> Room not yet assigned </p>
+          <AssignRoom plant={this.props.plant} />
+        </div>
+      );
     } else {
       return (
         <div className="assigned-room">
-          <Link
-            className="room-link"
-            to={`/rooms/${this.props.plant.room.id}`}
-          >
+          <Link className="room-link" to={`/rooms/${this.props.plant.room.id}`}>
             <p>{this.props.plant.room.name}</p>
           </Link>
           <button
@@ -42,9 +45,10 @@ class SinglePlant extends React.Component {
         </div>
       );
     }
-  };
+  }
   render() {
     if (!this.props.plant.id) return <div>plant loading</div>;
+
     return (
       <div id="single-plant-div">
         <img

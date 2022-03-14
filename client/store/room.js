@@ -33,7 +33,6 @@ const unassignPlant = (room) => {
   }
 }
 
-
 // thunk for single Room
 export const fetchSingleRoom = (id) => {
   return async (dispatch) => {

@@ -17,6 +17,9 @@ const getSinglePlant = (plant) => {
   };
 };
 
+//action creator for assign room 
+const ASSIGN_ROOM = 'ASSIGN_ROOM'
+
 //action creator for edit plant
 const editPlant = (plant) => {
   return {
@@ -32,6 +35,14 @@ const unassignRoom = (plant) => {
     plant
   }
 }
+
+const assignRoom = (plant) => {
+  return{
+    type: ASSIGN_ROOM, 
+    plant
+  };
+};
+
 
 
 // thunk for single plant
@@ -59,6 +70,14 @@ export const removeAssociation = (plantId, roomId) => {
   }
 }
 
+//thunk for add plant to room 
+export const addAssociation = (roomId, plantId) => {
+  return async (dispatch) => {
+    const {data: added} = await axios.put(`/api/plants/${plantId}/assign/${roomId}`)
+    dispatch(assignRoom(added))
+  }
+}
+
 // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers
 export default function singleplantReducer(state = {}, action) {
@@ -68,6 +87,8 @@ export default function singleplantReducer(state = {}, action) {
     case EDIT_PLANT:
       return action.plant
     case UNASSIGN_ROOM:
+    return action.plant
+    case ASSIGN_ROOM: 
     return action.plant
     default:
       return state;

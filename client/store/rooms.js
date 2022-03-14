@@ -33,6 +33,7 @@ const deleteRoom = (room) => {
   };
 };
 
+
 // thunk for all rooms
 export const fetchRooms = () => {
   return async (dispatch) => {

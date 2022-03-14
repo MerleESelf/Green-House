@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { fetchSinglePlant, removeAssociation } from "../store/plant.js";
-import EditPlant from './EditPlant';
+import EditPlant from "./EditPlant";
 
 class SinglePlant extends React.Component {
   constructor(props) {
     super(props);
     this.handleUnassign = this.handleUnassign.bind(this);
+    this.renderRooms = this.renderRooms.bind(this)
   }
   componentDidMount() {
     this.props.getPlant(this.props.match.params.id);
@@ -19,7 +20,29 @@ class SinglePlant extends React.Component {
     const plantId = this.props.plant.id;
     this.props.removeAssociation(plantId, roomId);
   }
-
+  renderRooms(){
+    if (this.props.plant.room === null) {
+      return <p> Room not yet assigned </p>;
+    } else {
+      return (
+        <div className="assigned-room">
+          <Link
+            className="room-link"
+            to={`/rooms/${this.props.plant.room.id}`}
+          >
+            <p>{this.props.plant.room.name}</p>
+          </Link>
+          <button
+            value={this.props.plant.room.id}
+            type="button"
+            onClick={this.handleUnassign}
+          >
+            Remove From Room
+          </button>
+        </div>
+      );
+    }
+  };
   render() {
     if (!this.props.plant.id) return <div>plant loading</div>;
     return (
@@ -48,14 +71,7 @@ class SinglePlant extends React.Component {
         </div>
         <div>
           <p>Assigned Room:</p>
-          <div className="assigned-room">
-            <Link className="room-link" to={`/rooms/${this.props.plant.room.id}`}>
-              <p>{this.props.plant.room.name}</p>
-            </Link>
-            <button value={this.props.plant.room.id} type="button" onClick={this.handleUnassign}>
-              Remove From Room
-            </button>
-          </div> 
+          {this.renderRooms()}
         </div>
         <div>
           <p>{`Edit ${this.props.plant.genus}:`}</p>

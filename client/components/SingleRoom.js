@@ -9,6 +9,7 @@ class SingleRoom extends React.Component {
   constructor(props) {
     super(props);
     this.handleUnassign = this.handleUnassign.bind(this);
+    this.renderPlants = this.renderPlants.bind(this)
   }
   componentDidMount() {
     this.props.getRoom(this.props.match.params.id);
@@ -19,6 +20,33 @@ class SingleRoom extends React.Component {
     const roomId = this.props.room.id;
     this.props.removeAssociation(roomId, plantId);
   }
+  renderPlants(){
+    if (this.props.room.plant === []) {
+      return <p> No plants in this room </p>;
+    } else {
+      return (
+        this.props.room.plants.map((plant) => {
+          return (
+            <div className="assigned-plant" key={plant.id}>
+              <Link className="plant-link" to={`/plants/${plant.id}`}>
+                <p>{plant.commonName}</p>
+                <img
+                 src={plant.image}
+                 style={{ height: `200px`, width: `200px` }}/>
+              </Link>
+              <button
+                value={plant.id}
+                type="button"
+                onClick={this.handleUnassign}
+              >
+                Remove From Room
+              </button>
+            </div>
+          );
+        })
+      );
+    }
+  };
 
   render() {
       console.log('props in ingle room', this.props)
@@ -40,25 +68,7 @@ class SingleRoom extends React.Component {
         </div>
         <div>
           <p>Plants in Room:</p>
-          {this.props.room.plants.map((plant) => {
-            return (
-              <div className="assigned-plant" key={plant.id}>
-                <Link className="plant-link" to={`/plants/${plant.id}`}>
-                  <p>{plant.commonName}</p>
-                  <img
-                   src={plant.image}
-                   style={{ height: `200px`, width: `200px` }}/>
-                </Link>
-                <button
-                  value={plant.id}
-                  type="button"
-                  onClick={this.handleUnassign}
-                >
-                  Remove From Room
-                </button>
-              </div>
-            );
-          })}
+          {this.renderPlants()}
         </div>
         <div>
           <p>{`Edit ${this.props.room.name}:`}</p>

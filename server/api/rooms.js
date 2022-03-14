@@ -50,7 +50,7 @@ router.put('/:id', async (req, res, next) => {
 router.put('/:id/unassign/:plantid', async (req, res, next) => {
   try {
     const RoomWithPlantToUnassign = await Room.findByPk(req.params.id);
-    await RoomWithPlantToUnassign.removeRoom(req.params.plantid);
+    await RoomWithPlantToUnassign.removePlant(req.params.plantid);
     res.send(await Room.findByPk(req.params.id, { include: Plant }));
   } catch (error) {
     next(error);
